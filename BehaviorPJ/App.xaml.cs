@@ -26,6 +26,7 @@ namespace BehaviorPJ {
         protected override void RegisterTypes(IContainerRegistry containerRegistry) {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<Page1, Page1ViewModel>();
         }
     }
 }
