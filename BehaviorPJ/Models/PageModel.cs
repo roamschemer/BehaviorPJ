@@ -4,22 +4,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace BehaviorPJ.Models {
+
     //ページのデータクラス
     public class PageData : BindableBase {
         public string Title { get => title; set => SetProperty(ref title, value); }
         private string title;
         public string ViewName { get => viewName; set => SetProperty(ref viewName, value); }
         private string viewName;
-
-        public PageData() {
-
-        }
-
-        public PageData(PageData pageData) {
-            Title = pageData.Title;
-            ViewName = pageData.ViewName;
+        public void Replacement(PageData p) {
+            Title = p.Title;
+            ViewName = p.ViewName;
         }
     }
+
     //ページ情報
     public class PageModel : BindableBase {
         public ObservableCollection<PageData> Pages { get; }
