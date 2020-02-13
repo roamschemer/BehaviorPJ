@@ -5,6 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="BehaviorPJ.Views.Page1"
              Title="{Binding Title.Value}">
-
-    <Label Text="{Binding PageData.Value.Title}"/>
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Label Text="{Binding Label.Value}" FontSize="Large"/>
+    </StackLayout>
 </ContentPage>
