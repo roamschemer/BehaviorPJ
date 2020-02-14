@@ -7,20 +7,19 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
 namespace BehaviorPJ.ViewModels {
-    public class Page1ViewModel : ViewModelBase, IDisposable {
-        private readonly PageData pageData = new PageData();
-        public ReactiveProperty<string> Title { get; private set; }
-        public ReactiveProperty<string> Label { get; private set; }
+    public class Page1ViewModel : ViewModelBase {
+        private PageData PageData { get; }
+        public ReactiveProperty<string> Title { get; }
+        public ReactiveProperty<string> Label { get; }
 
-        public Page1ViewModel(INavigationService navigationService) : base(navigationService) {
-            Title = pageData.ObserveProperty(x => x.Title).ToReactiveProperty().AddTo(this.Disposable);
-            Label = pageData.ObserveProperty(x => x.LabelName).ToReactiveProperty().AddTo(this.Disposable);
+        public Page1ViewModel(INavigationService navigationService, PageData pageData) : base(navigationService) {
+            this.PageData = pageData;
+            Title = PageData.ObserveProperty(x => x.Title).ToReactiveProperty().AddTo(this.Disposable);
+            Label = PageData.ObserveProperty(x => x.LabelName).ToReactiveProperty().AddTo(this.Disposable);
         }
         public override void OnNavigatedTo(INavigationParameters parameters) {
-            pageData.Replacement((PageData)parameters["PageData"]);
+            if (parameters == null) return;
+            if (parameters.ContainsKey("PageData")) PageData.Replacement((PageData)parameters["PageData"]);
         }
-        //後始末
-        private CompositeDisposable Disposable { get; } = new CompositeDisposable();
-        public void Dispose() => this.Disposable.Dispose();
     }
 }

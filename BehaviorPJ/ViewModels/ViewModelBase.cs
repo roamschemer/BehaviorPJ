@@ -3,12 +3,13 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Reactive.Disposables;
 using System.Text;
 
 namespace BehaviorPJ.ViewModels {
     public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible {
         protected INavigationService NavigationService { get; private set; }
-
+        protected CompositeDisposable Disposable { get; } = new CompositeDisposable();
         public ViewModelBase(INavigationService navigationService) {
             NavigationService = navigationService;
         }
@@ -26,7 +27,7 @@ namespace BehaviorPJ.ViewModels {
         }
 
         public virtual void Destroy() {
-
+            this.Disposable.Dispose();
         }
     }
 }
