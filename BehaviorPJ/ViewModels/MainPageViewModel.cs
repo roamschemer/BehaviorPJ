@@ -12,10 +12,16 @@ namespace BehaviorPJ.ViewModels {
         public AsyncReactiveCommand<PageData> ListTapped { get;} = new AsyncReactiveCommand<PageData>();
         public MainPageViewModel(INavigationService navigationService, PageModel pageModel) : base(navigationService) {
             PageDatas = pageModel.Pages.ToReadOnlyReactiveCollection();
-            CollectionSelectedItem.Where(x => x != null).Subscribe(async (x) => {
+            //CollectionSelectedItem.Where(x => x != null).Subscribe(async (x) => {
+            //    var p = new NavigationParameters { { "PageData", x } };
+            //    await navigationService.NavigateAsync("Page1", p);
+            //    CollectionSelectedItem.Value = null; //選択を消す
+            //});
+            ListTapped.Subscribe(async (x) => {
+                if (x == null) return;
                 var p = new NavigationParameters { { "PageData", x } };
                 await navigationService.NavigateAsync("Page1", p);
-                CollectionSelectedItem.Value = null; //選択を消しておく
+                CollectionSelectedItem.Value = null; //選択を消す
             });
         }
     }
