@@ -2,10 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:local="clr-namespace:BehaviorPJ.Behaviors"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="BehaviorPJ.Views.Page1"
              Title="{Binding Title.Value}">
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="{Binding Label.Value}" FontSize="Large"/>
+        <Label Text="{Binding Text.Value}" FontSize="Large"/>
+        <Entry Text="{Binding Text.Value}" >
+            <Entry.Behaviors>
+                <local:NumericValidationBehavior />
+            </Entry.Behaviors>
+        </Entry>
     </StackLayout>
 </ContentPage>

@@ -10,12 +10,12 @@ namespace BehaviorPJ.ViewModels {
     public class Page1ViewModel : ViewModelBase {
         private PageData PageData { get; }
         public ReactiveProperty<string> Title { get; }
-        public ReactiveProperty<string> Label { get; }
+        public ReactiveProperty<string> Text { get; }
 
         public Page1ViewModel(INavigationService navigationService, PageData pageData) : base(navigationService) {
             this.PageData = pageData;
             Title = PageData.ObserveProperty(x => x.Title).ToReactiveProperty().AddTo(this.Disposable);
-            Label = PageData.ObserveProperty(x => x.LabelName).ToReactiveProperty().AddTo(this.Disposable);
+            Text = PageData.ObserveProperty(x => x.Text).ToReactiveProperty().AddTo(this.Disposable);
         }
         public override void OnNavigatedTo(INavigationParameters parameters) {
             if (parameters == null) return;

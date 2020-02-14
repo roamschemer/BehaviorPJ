@@ -9,11 +9,11 @@ namespace BehaviorPJ.Models {
     public class PageData : BindableBase {
         public string Title { get => title; set => SetProperty(ref title, value); }
         private string title;
-        public string LabelName { get => labelName; set => SetProperty(ref labelName, value); }
-        private string labelName;
+        public string Text { get => text; set => SetProperty(ref text, value); }
+        private string text;
         public void Replacement(PageData p) {
             Title = p.Title;
-            LabelName = p.LabelName;
+            Text = p.Text;
         }
     }
 
@@ -23,11 +23,11 @@ namespace BehaviorPJ.Models {
 
         public PageModel() {
             var items = new List<PageData>{
-                new PageData { Title = "画面1", LabelName = "その1" },
-                new PageData { Title = "画面2", LabelName = "その2" },
-                new PageData { Title = "画面3", LabelName = "その3" },
-                new PageData { Title = "画面4", LabelName = "その4" },
-                new PageData { Title = "画面5", LabelName = "その5" },
+                new PageData { Title = "画面1", Text = "その1" },
+                new PageData { Title = "画面2", Text = "その2" },
+                new PageData { Title = "画面3", Text = "その3" },
+                new PageData { Title = "画面4", Text = "その4" },
+                new PageData { Title = "画面5", Text = "その5" },
             };
             Pages = new ObservableCollection<PageData>(items);
         }
