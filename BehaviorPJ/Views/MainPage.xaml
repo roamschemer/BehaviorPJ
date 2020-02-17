@@ -3,41 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:b="clr-namespace:BehaviorPJ.Behaviors"
              x:Class="BehaviorPJ.Views.MainPage"
+             x:Name="Base"
              Title="MainPage">
-    <StackLayout>
-        <CollectionView BackgroundColor="#9EFA03"
-                        SelectionMode="Single"
-                        ItemsSource="{Binding PageDatas}" 
-                        SelectedItem="{Binding CollectionSelectedItem.Value}">
+    <StackLayout BackgroundColor="#EE2424">
+        <CollectionView BackgroundColor="#E64175"
+                        ItemsSource="{Binding PageDatas}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" Span="2" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="20">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.ListTapped, Source={x:Reference Base}}" 
+                                                  CommandParameter="{Binding}"/>
+                        </Grid.GestureRecognizers>
                         <Label Text="{Binding Title}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <CollectionView x:Name="MyCollectionView"
-                        BackgroundColor="#E99BFF"
-                        SelectionMode="Single"
-                        ItemsSource="{Binding PageDatas}" 
-                        SelectionChangedCommand ="{Binding ListTapped}"
-                        SelectedItem="{Binding CollectionSelectedItem.Value}"
-                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference MyCollectionView}}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="2" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="20">
-                        <Label Text="{Binding Title}" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>    
     </StackLayout>
 
 </ContentPage>
